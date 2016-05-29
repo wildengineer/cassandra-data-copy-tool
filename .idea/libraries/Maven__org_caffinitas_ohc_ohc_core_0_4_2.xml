@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.caffinitas.ohc:ohc-core:0.4.2">
+    <CLASSES>
+      <root url="jar:///th/.m2/repository/org/caffinitas/ohc/ohc-core/0.4.2/ohc-core-0.4.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///th/.m2/repository/org/caffinitas/ohc/ohc-core/0.4.2/ohc-core-0.4.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///th/.m2/repository/org/caffinitas/ohc/ohc-core/0.4.2/ohc-core-0.4.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
