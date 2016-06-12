@@ -4,7 +4,7 @@
 
 	<groupId>wildengineer</groupId>
 	<artifactId>cassandra-data-copy-tool</artifactId>
-	<version>0.9.1</version>
+	<version>0.9.2</version>
 	<packaging>jar</packaging>
 
 	<name>cassandra-data-copy-tool</name>
