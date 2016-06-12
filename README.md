@@ -10,11 +10,11 @@ The project requires:
 * Java 8
 * Maven 2 or later versions to run. 
 
-Once you've got maven setup run from the project directory.
+Once you've got your environment setup run from the project directory.
 
 > mvn package
 
-This builds a jar in ./target/cassandra-data-copy-tool-0.9.0-SNAPSHOT.jar"
+This builds a jar in ./target/cassandra-data-copy-tool-<VERSION>-SNAPSHOT.jar"
 
 ### Configuration
 
@@ -82,4 +82,4 @@ destination.cassandra.password | Destination plaintext password | cassandra
 
 Once you have your property file ready, simply run:
 
-> java -jar cassandra-data-copy-tool-0.9.0-SNAPSHOT.jar --spring.config.location=/path/to/config/properties
+> java -jar cassandra-data-copy-tool-<VERSION>-SNAPSHOT.jar --spring.config.location=/path/to/config.properties
