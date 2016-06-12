@@ -44,6 +44,10 @@ public class TableDataCopier {
 		this.tuningParams = tuningParams;
 	}
 
+	public void copy(String fromTable, String toTable) throws Exception {
+		copy(fromTable, toTable, null);
+	}
+
 	public void copy(String fromTable, String toTable, Set<String> ignoreColumns) throws Exception {
 
 		LOGGER.debug("Copying data from table {} to table {}", fromTable, toTable);

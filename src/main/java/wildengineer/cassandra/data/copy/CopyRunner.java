@@ -11,12 +11,11 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.datastax.driver.core.Cluster;
-import com.datastax.driver.core.HostDistance;
 import com.datastax.driver.core.Session;
 
 /**
@@ -33,17 +32,17 @@ public class CopyRunner implements CommandLineRunner {
 
 	public static final String TABLE_MAPPING_DELIMETER = "=>";
 
-	private final SourceCassandraProperties sourceCassandraProperties;
-	private final SinkCassandraProperties sinkCassandraProperties;
 	private final CopyProperties copyProperties;
 	private final Map<String, Set<String>> ignoreMap = new HashMap<>();
+	private final Session sourceSession;
+	private final Session sinkSession;
 
 	@Autowired
-	public CopyRunner(CopyProperties copyProperties, SourceCassandraProperties sourceCassandraProperties,
-		SinkCassandraProperties sinkCassandraProperties) {
+	public CopyRunner(CopyProperties copyProperties, @Qualifier("sourceSession") Session sourceSession,
+			@Qualifier("sinkSession") Session sinkSession) {
 		this.copyProperties = copyProperties;
-		this.sourceCassandraProperties = sourceCassandraProperties;
-		this.sinkCassandraProperties = sinkCassandraProperties;
+		this.sourceSession = sourceSession;
+		this.sinkSession = sinkSession;
 
 		//initialize ignoreMap
 		if (!StringUtils.isEmpty(copyProperties.getIgnoreColumns())) {
@@ -70,9 +69,6 @@ public class CopyRunner implements CommandLineRunner {
 			.map(s -> s.split(TABLE_MAPPING_DELIMETER))
 			.collect(Collectors.toList());
 
-		Session sourceSession = buildSourceSession();
-		Session sinkSession = buildSinkSession();
-
 		TableDataCopier tableDataCopier = new TableDataCopier(sourceSession, sinkSession, copyProperties);
 		for (String[] table : tables) {
 			Set<String> ignoreSet = ignoreMap.get(table[0]);
@@ -84,28 +80,6 @@ public class CopyRunner implements CommandLineRunner {
 				throw new IllegalArgumentException("Table configuration is invalid.");
 			}
 		}
-	}
-
-	private Session buildSourceSession() {
-		Cluster cluster = Cluster.builder()
-			.addContactPoints(sourceCassandraProperties.getContactPoints().split(","))
-			.withCredentials(sourceCassandraProperties.getUsername(), sourceCassandraProperties.getPassword())
-			.withPort(sourceCassandraProperties.getPort())
-			.build();
-		cluster.getConfiguration().getPoolingOptions().setMaxConnectionsPerHost(HostDistance.LOCAL, 64);
-		cluster.getConfiguration().getPoolingOptions().setMaxConnectionsPerHost(HostDistance.REMOTE, 16);
-		return cluster.connect(sourceCassandraProperties.getKeyspace());
-	}
-
-	private Session buildSinkSession() {
-		Cluster cluster = Cluster.builder()
-			.addContactPoints(sinkCassandraProperties.getContactPoints().split(","))
-			.withCredentials(sinkCassandraProperties.getUsername(), sinkCassandraProperties.getPassword())
-			.withPort(sinkCassandraProperties.getPort())
-			.build();
-		cluster.getConfiguration().getPoolingOptions().setMaxConnectionsPerHost(HostDistance.LOCAL, 64);
-		cluster.getConfiguration().getPoolingOptions().setMaxConnectionsPerHost(HostDistance.REMOTE, 16);
-		return cluster.connect(sinkCassandraProperties.getKeyspace());
 	}
 
 }
