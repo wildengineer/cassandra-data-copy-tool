@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd1e8177-79fd-40bb-a589-6f7cbde9c49b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/wildengineer/cassandra/data/copy/CassandraConfiguration.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/wildengineer/cassandra/data/copy/CopyRunnerIntegrationTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/wildengineer/cassandra/data/copy/TableDataCopierTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/wildengineer/cassandra/data/copy/TestUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/wildengineer/cassandra/data/copy/UserEntity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/resources/TestSchemaAndData.cql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/resources/application.properties" />
+    <list default="true" id="dd1e8177-79fd-40bb-a589-6f7cbde9c49b" name="Default" comment="ignoring files">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
@@ -18,15 +12,11 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_addthis_metrics_reporter_config3_3_0_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_addthis_metrics_reporter_config_base_3_0_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_boundary_high_scale_lib_1_0_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_carrotsearch_hppc_0_5_4.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_clearspring_analytics_stream_2_5_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_codahale_metrics_metrics_core_3_0_2.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_datastax_cassandra_cassandra_driver_core_2_1_9.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_datastax_cassandra_cassandra_driver_dse_2_1_9.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jbellis_jamm_0_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_rholder_snowball_stemmer_1_3_0_581_1.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_18_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_concurrent_trees_concurrent_trees_2_4_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_concurrentlinkedhashmap_concurrentlinkedhashmap_lru_1_4.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_json_simple_json_simple_1_1_1.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_lmax_disruptor_3_0_1.xml" afterPath="" />
@@ -34,8 +24,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_thinkaurelius_thrift_thrift_server_0_3_7.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_cli_commons_cli_1_1.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__de_jflex_jflex_1_6_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_dropwizard_metrics_metrics_core_3_1_2.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_buffer_4_0_27_Final.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_4_0_27_Final.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_common_4_0_27_Final.xml" afterPath="" />
@@ -46,14 +34,9 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_dev_jna_jna_4_0_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_jpountz_lz4_lz4_1_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_mintern_primitive_1_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_ST4_4_0_8.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr_3_5_2.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr_runtime_3_5_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ant_ant_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ant_ant_launcher_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cassandra_cassandra_all_3_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cassandra_cassandra_thrift_3_4.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_4.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math3_3_2.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_4_1.xml" afterPath="" />
@@ -61,12 +44,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_4_1.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_thrift_libthrift_0_9_2.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjrt_1_8_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_caffinitas_ohc_ohc_core_0_4_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_cassandraunit_cassandra_unit_3_0_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_cassandraunit_cassandra_unit_spring_3_0_0_1.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_2.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jdt_core_compiler_ecj_4_4_2.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_fusesource_sigar_1_6_4.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml" afterPath="" />
@@ -96,12 +75,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/wildengineer/TableCopierTest.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cassandra-data-copy-tool.iml" afterPath="$PROJECT_DIR$/cassandra-data-copy-tool.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/wildengineer/cassandra/data/copy/CassandraDataCopyToolApplication.java" afterPath="$PROJECT_DIR$/src/main/java/wildengineer/cassandra/data/copy/CassandraDataCopyToolApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/wildengineer/cassandra/data/copy/CopyRunner.java" afterPath="$PROJECT_DIR$/src/main/java/wildengineer/cassandra/data/copy/CopyRunner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/wildengineer/cassandra/data/copy/TableDataCopier.java" afterPath="$PROJECT_DIR$/src/main/java/wildengineer/cassandra/data/copy/TableDataCopier.java" />
     </list>
     <ignored path="cassandra-data-copy-tool.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -109,6 +82,7 @@
     <ignored path=".idea/dataSources.local.xml" />
     <ignored path="$PROJECT_DIR$/${project.build.directory}/classes/" />
     <ignored path="$PROJECT_DIR$/${project.build.directory}/test-classes/" />
+    <ignored path=".idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -340,7 +314,20 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cassandra-data-copy-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cassandra-data-copy-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1095,8 +1082,16 @@
       <workItem from="1465042816033" duration="18436000" />
       <workItem from="1465222835150" duration="192000" />
       <workItem from="1465233582022" duration="4000" />
-      <workItem from="1465752552894" duration="5639000" />
+      <workItem from="1465752552894" duration="5873000" />
     </task>
+    <task id="LOCAL-00001" summary="Finalizing first version">
+      <created>1465758262309</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1465758262309</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1132,7 +1127,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34139000" />
+    <option name="totallyTimeSpent" value="34373000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1224,7 +1219,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Finalizing first version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalizing first version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
