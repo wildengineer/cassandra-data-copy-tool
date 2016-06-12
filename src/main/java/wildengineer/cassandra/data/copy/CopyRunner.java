@@ -21,7 +21,7 @@ import com.datastax.driver.core.Session;
 /**
  * CommandLineRunner implementation for copying a keyspace from one cassandra database to another.
  *
- * This tool assumes that the source and sink keyspaces are identical.
+ * This tool assumes that the source and destination keyspaces are identical.
  *
  * Created by mgroves on 3/27/16.
  */
@@ -35,14 +35,14 @@ public class CopyRunner implements CommandLineRunner {
 	private final CopyProperties copyProperties;
 	private final Map<String, Set<String>> ignoreMap = new HashMap<>();
 	private final Session sourceSession;
-	private final Session sinkSession;
+	private final Session destinationSession;
 
 	@Autowired
 	public CopyRunner(CopyProperties copyProperties, @Qualifier("sourceSession") Session sourceSession,
-			@Qualifier("sinkSession") Session sinkSession) {
+			@Qualifier("destinationSession") Session destinationSession) {
 		this.copyProperties = copyProperties;
 		this.sourceSession = sourceSession;
-		this.sinkSession = sinkSession;
+		this.destinationSession = destinationSession;
 
 		//initialize ignoreMap
 		if (!StringUtils.isEmpty(copyProperties.getIgnoreColumns())) {
@@ -69,7 +69,7 @@ public class CopyRunner implements CommandLineRunner {
 			.map(s -> s.split(TABLE_MAPPING_DELIMETER))
 			.collect(Collectors.toList());
 
-		TableDataCopier tableDataCopier = new TableDataCopier(sourceSession, sinkSession, copyProperties);
+		TableDataCopier tableDataCopier = new TableDataCopier(sourceSession, destinationSession, copyProperties);
 		for (String[] table : tables) {
 			Set<String> ignoreSet = ignoreMap.get(table[0]);
 			if (table.length == 1) {

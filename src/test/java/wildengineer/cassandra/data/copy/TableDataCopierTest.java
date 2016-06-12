@@ -34,23 +34,23 @@ import com.google.common.collect.Sets;
 public class TableDataCopierTest {
 
 	private Session sourceSession;
-	private Session sinkSession;
+	private Session destinationSession;
 
 	private CassandraTemplate sourceCassandraTemplate;
-	private CassandraTemplate sinkCassandraTemplate;
+	private CassandraTemplate destinationCassandraTemplate;
 
 	@Before
 	public void setup() {
 		sourceSession = createNewLocalhostSession();
 		sourceCassandraTemplate = new CassandraTemplate(sourceSession);
-		sinkSession = createNewLocalhostSession();
-		sinkCassandraTemplate = new CassandraTemplate(sinkSession);
+		destinationSession = createNewLocalhostSession();
+		destinationCassandraTemplate = new CassandraTemplate(destinationSession);
 	}
 
 	@Test
 	public void testCopyFromUserToVerifiedUser() throws Exception {
 
-		TableDataCopier tableDataCopier	= new TableDataCopier(sourceSession, sinkSession, new TuningParams());
+		TableDataCopier tableDataCopier	= new TableDataCopier(sourceSession, destinationSession, new TuningParams());
 		tableDataCopier.copy(USERS, VERIFIED_USERS);
 
 
@@ -59,7 +59,7 @@ public class TableDataCopierTest {
 	@Test
 	public void testCopyFromUserToVerifiedUserWithIgnore() throws Exception {
 
-		TableDataCopier tableDataCopier	= new TableDataCopier(sourceSession, sinkSession, new TuningParams());
+		TableDataCopier tableDataCopier	= new TableDataCopier(sourceSession, destinationSession, new TuningParams());
 		tableDataCopier.copy(USERS, VERIFIED_USERS, Sets.newHashSet(LASTNAME));
 
 		List<UserEntity> sourceList
@@ -67,7 +67,7 @@ public class TableDataCopierTest {
 		sourceList.forEach((user) -> {
 			Select selectByEmail = select().from(TEST_KEYSPACE, VERIFIED_USERS);
 			selectByEmail.where(eq("email", user.getEmail()));
-			List<UserEntity> copiedUsers = sinkCassandraTemplate.select(selectByEmail, UserEntity.class);
+			List<UserEntity> copiedUsers = destinationCassandraTemplate.select(selectByEmail, UserEntity.class);
 			assertFalse(copiedUsers.isEmpty());
 			UserEntity copiedUser = copiedUsers.get(0);
 			assertNotNull(copiedUser);

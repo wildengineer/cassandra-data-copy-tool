@@ -22,13 +22,13 @@ public class TestUtil {
 	public static final String VERIFIED_USERS = "verified_users";
 	public static final String LASTNAME = "lastname";
 
-	public static void verifyUsers(CassandraTemplate sourceCassandraTemplate, CassandraTemplate sinkCassandraTemplate) {
+	public static void verifyUsers(CassandraTemplate sourceCassandraTemplate, CassandraTemplate destinationCassandraTemplate) {
 		List<UserEntity> sourceList
 				= sourceCassandraTemplate.select(select().from(TEST_KEYSPACE, USERS), UserEntity.class);
 		sourceList.forEach((user) -> {
 			Select selectByEmail = select().from(TEST_KEYSPACE, VERIFIED_USERS);
 			selectByEmail.where(eq("email", user.getEmail()));
-			List<UserEntity> copiedUsers = sinkCassandraTemplate.select(selectByEmail, UserEntity.class);
+			List<UserEntity> copiedUsers = destinationCassandraTemplate.select(selectByEmail, UserEntity.class);
 			assertFalse(copiedUsers.isEmpty());
 			UserEntity copiedUser = copiedUsers.get(0);
 			assertNotNull(copiedUser);

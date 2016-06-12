@@ -19,7 +19,7 @@ public class CassandraConfiguration {
 	private SourceCassandraProperties sourceCassandraProperties;
 
 	@Autowired
-	private SinkCassandraProperties sinkCassandraProperties;
+	private DestinationCassandraProperties destinationCassandraProperties;
 
 	@Bean
 	public Session sourceSession() {
@@ -27,8 +27,8 @@ public class CassandraConfiguration {
 	}
 
 	@Bean
-	public Session sinkSession() {
-		return buildSession(sinkCassandraProperties);
+	public Session destinationSession() {
+		return buildSession(destinationCassandraProperties);
 	}
 
 	private Session buildSession(CassandraProperties cassandraProperties) {

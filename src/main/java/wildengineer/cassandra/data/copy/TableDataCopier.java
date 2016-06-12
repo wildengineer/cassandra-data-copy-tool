@@ -30,7 +30,7 @@ public class TableDataCopier {
 	private static Logger LOGGER = LogManager.getLogger(TableDataCopier.class);
 
 	private final Session sourceSession;
-	private final Session sinkSession;
+	private final Session destinationSession;
 	private final TuningParams tuningParams;
 
 	private final String INSERT_STATEMENT = "insert into %s (%s) values (%s)";
@@ -38,9 +38,9 @@ public class TableDataCopier {
 	private int copyCount = 0;
 
 	@Autowired
-	public TableDataCopier(Session sourceSession, Session sinkSession, TuningParams tuningParams) {
+	public TableDataCopier(Session sourceSession, Session destinationSession, TuningParams tuningParams) {
 		this.sourceSession = sourceSession;
-		this.sinkSession = sinkSession;
+		this.destinationSession = destinationSession;
 		this.tuningParams = tuningParams;
 	}
 
@@ -74,7 +74,7 @@ public class TableDataCopier {
 						columnDefinitions.stream().map(ColumnDefinitions.Definition::getName)
 								.collect(Collectors.toList()));
 				CachedPreparedStatementCreator cpsc = new CachedPreparedStatementCreator(insertStatement);
-				preparedStatement = cpsc.createPreparedStatement(sinkSession);
+				preparedStatement = cpsc.createPreparedStatement(destinationSession);
 				LOGGER.debug("Built insert statement: {}", insertStatement);
 			}
 
@@ -83,7 +83,7 @@ public class TableDataCopier {
 			if (rowsToIngest.size() >= tuningParams.getBatchSize()) {
 				List<List<?>> copyOfRowsToIngest = new ArrayList<>(rowsToIngest);
 				rowsToIngest.clear();
-				LOGGER.debug("Ingesting {} rows to sink", copyOfRowsToIngest.size());
+				LOGGER.debug("Ingesting {} rows to destination", copyOfRowsToIngest.size());
 				ingest(preparedStatement, rowIterator(copyOfRowsToIngest), rateLimiter);
 			}
 		}
@@ -95,7 +95,7 @@ public class TableDataCopier {
 	private void ingest(PreparedStatement preparedStatement, RowIterator rowIterator, RateLimiter rateLimiter) {
 		while(rowIterator.hasNext()) {
 			rateLimiter.acquire();
-			sinkSession.executeAsync(preparedStatement.bind(rowIterator.next()));
+			destinationSession.executeAsync(preparedStatement.bind(rowIterator.next()));
 		}
 	}
 

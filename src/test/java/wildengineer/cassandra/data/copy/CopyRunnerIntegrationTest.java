@@ -34,22 +34,22 @@ public class CopyRunnerIntegrationTest {
 	private Session sourceSession;
 
 	@Autowired
-	private Session sinkSession;
+	private Session destinationSession;
 
-	private CassandraTemplate sinkCassandraTemplate;
+	private CassandraTemplate destinationCassandraTemplate;
 
 	private CassandraTemplate sourceCassandraTemplate;
 
 	@Before
 	public void setup() {
 		sourceCassandraTemplate = new CassandraTemplate(sourceSession);
-		sinkCassandraTemplate = new CassandraTemplate(sinkSession);
+		destinationCassandraTemplate = new CassandraTemplate(destinationSession);
 	}
 
 	@Test
 	public void verify() throws Exception {
 
-		//verify source and sink match
-		verifyUsers(sourceCassandraTemplate, sinkCassandraTemplate);
+		//verify source and destination match
+		verifyUsers(sourceCassandraTemplate, destinationCassandraTemplate);
 	}
 }

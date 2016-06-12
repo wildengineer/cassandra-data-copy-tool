@@ -4,12 +4,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * Cassandra connection properties bean for sink connection
+ * Cassandra connection properties bean for destination connection
  *
  * @author mgroves
  */
 @Component
-@ConfigurationProperties(prefix = "sink.cassandra")
-public class SinkCassandraProperties extends CassandraProperties {
+@ConfigurationProperties(prefix = "destination.cassandra")
+public class DestinationCassandraProperties extends CassandraProperties {
 	//TODO: Add write options
 }
