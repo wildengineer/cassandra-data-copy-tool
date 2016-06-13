@@ -9,14 +9,16 @@ public class CassandraProperties {
 	//TODO: Add defaults with static fields
 	//TODO: Add retry policy
 
-	private String contactPoints;
-	private Integer port;
+	public static final String DEFAULT_CONTACT_POINTS = "127.0.0.1";
+	public static final int DEFAULT_PORT = 9142;
+	public static final String DEFAULT_USERNAME = "cassandra";
+	public static final String DEFAULT_PASSWORD = "cassandra";
+
+	private String contactPoints = DEFAULT_CONTACT_POINTS;
+	private Integer port = DEFAULT_PORT;
 	private String keyspace;
-	private String username;
-	private String password;
-	private int fetchSize;
-	private int consistencyLevelCode;
-	private int statementRetryCount;
+	private String username = DEFAULT_USERNAME;
+	private String password = DEFAULT_PASSWORD;
 
 	public String getContactPoints() {
 		return contactPoints;
@@ -56,29 +58,5 @@ public class CassandraProperties {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public void setFetchSize(int fetchSize) {
-		this.fetchSize = fetchSize;
-	}
-
-	public int getFetchSize() {
-		return fetchSize;
-	}
-
-	public int getConsistencyLevelCode() {
-		return consistencyLevelCode;
-	}
-
-	public void setConsistencyLevelCode(int consistencyLevelCode) {
-		this.consistencyLevelCode = consistencyLevelCode;
-	}
-
-	public int getStatementRetryCount() {
-		return statementRetryCount;
-	}
-
-	public void setStatementRetryCount(int statementRetryCount) {
-		this.statementRetryCount = statementRetryCount;
 	}
 }
