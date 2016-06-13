@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class CopyProperties extends TuningParams {
 
 	//TODO: Add validation
-
+	
 	private String tables;
 	private String ignoreColumns;
 
