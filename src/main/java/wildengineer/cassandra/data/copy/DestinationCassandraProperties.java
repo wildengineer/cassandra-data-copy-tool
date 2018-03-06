@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  *
  * @author mgroves
  */
-@Component
+@Component("destinationCassandraProperties")
 @ConfigurationProperties(prefix = "destination.cassandra")
 public class DestinationCassandraProperties extends CassandraProperties {
 	//TODO: Add write options

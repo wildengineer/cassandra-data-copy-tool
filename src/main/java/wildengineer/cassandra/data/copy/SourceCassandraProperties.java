@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  *
  * @author mgroves
  */
-@Component
+@Component("sourceCassandraProperties")
 @ConfigurationProperties(prefix = "source.cassandra")
 public class SourceCassandraProperties extends CassandraProperties {
 	//TODO: Add read options
