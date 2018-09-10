@@ -3,11 +3,15 @@ package wildengineer.cassandra.data.copy;
 import com.datastax.driver.core.*;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.google.common.util.concurrent.*;
+import org.apache.cassandra.config.CFMetaData;
+import org.apache.cassandra.db.DecoratedKey;
+import org.apache.cassandra.db.PartitionColumns;
+import org.apache.cassandra.db.rows.RowIterator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cassandra.core.CachedPreparedStatementCreator;
-import org.springframework.cassandra.core.RowIterator;
+//import org.springframework.cassandra.core.CachedPreparedStatementCreator;
+//import org.springframework.cassandra.core.RowIterator;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -33,7 +37,7 @@ public class TableDataCopier {
     private Long secondsStart = System.currentTimeMillis();
     private List<String> sourceFields;
 
-    public void logStats(Long copyCount) {
+    private void logStats(Long copyCount) {
         Long secondsNow = System.currentTimeMillis();
         Long since = secondsNow - secondsStart;
         long seconds = since / 1000; // Maybe no need to divide if the input is in seconds
@@ -47,7 +51,6 @@ public class TableDataCopier {
     private long copyCount = 0;
     private final ExecutorService executor;
 
-    @Autowired
     public TableDataCopier(Session sourceSession, Session destinationSession, KeyspaceMetadata sourceKeyspaceMetadata, TuningParams tuningParams) {
         this.sourceSession = sourceSession;
         this.destinationSession = destinationSession;
@@ -109,7 +112,7 @@ public class TableDataCopier {
                 int currentPage = page + 1;
                 System.out.printf("Fetching More More records using Page: %d%n", currentPage);
                 ListenableFuture<ResultSet> future = rs.fetchMoreResults();
-                return Futures.transform(future, iterate(preparedStatement, tuningParams, currentPage));
+                return Futures.transformAsync(future, iterate(preparedStatement, tuningParams, currentPage));
             }
         };
     }
@@ -124,7 +127,7 @@ public class TableDataCopier {
         statement.setFetchSize(3000);
         ResultSetFuture resultSetFuture = sourceSession.executeAsync(statement);
 
-        Futures.transform(resultSetFuture, iterate(preparedStatement, tuningParams,1), executor);
+        Futures.transformAsync(resultSetFuture, iterate(preparedStatement, tuningParams,1), executor);
     }
 
     private BoundStatement createInsertBoundStatement(String fromTable, String toTable) {
@@ -150,15 +153,57 @@ public class TableDataCopier {
     }
 
     private RowIterator rowIterator(List<List<?>> rowsToIngest) {
-        return new RowIterator() {
-            Iterator<List<?>> i = rowsToIngest.iterator();
+//        return new RowIterator() {
+//            Iterator<List<?>> i = rowsToIngest.iterator();
+//
+//            public Object[] next() {
+//                return ((List) this.i.next()).toArray();
+//            }
+//
+//            public boolean hasNext() {
+//                return this.i.hasNext();
+//            }
+//        };
 
-            public Object[] next() {
-                return ((List) this.i.next()).toArray();
+        return new RowIterator() {
+            @Override
+            public CFMetaData metadata() {
+                return null;
             }
 
+            @Override
+            public boolean isReverseOrder() {
+                return false;
+            }
+
+            @Override
+            public PartitionColumns columns() {
+                return null;
+            }
+
+            @Override
+            public DecoratedKey partitionKey() {
+                return null;
+            }
+
+            @Override
+            public org.apache.cassandra.db.rows.Row staticRow() {
+                return null;
+            }
+
+            @Override
+            public void close() {
+
+            }
+
+            @Override
             public boolean hasNext() {
-                return this.i.hasNext();
+                return false;
+            }
+
+            @Override
+            public org.apache.cassandra.db.rows.Row next() {
+                return null;
             }
         };
     }

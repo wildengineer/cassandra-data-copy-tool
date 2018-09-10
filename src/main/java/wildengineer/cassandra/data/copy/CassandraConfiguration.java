@@ -31,30 +31,22 @@ public class CassandraConfiguration {
 
     @Bean
     public Cluster sourceCluster(SourceCassandraProperties sourceCassandraProperties) {
-        Cluster cluster = Cluster.builder()
-                .withQueryOptions(new QueryOptions().setFetchSize(copyProperties.getQueryPageSize()))
-                .addContactPoints(sourceCassandraProperties.getContactPoints().split(","))
-                .withCredentials(sourceCassandraProperties.getUsername(), sourceCassandraProperties.getPassword())
-                .withRetryPolicy(DefaultRetryPolicy.INSTANCE)
-                .withLoadBalancingPolicy(new TokenAwarePolicy(DCAwareRoundRobinPolicy.builder().build()))
-                .withPort(sourceCassandraProperties.getPort())
-                .build();
-
-        cluster.getConfiguration().getPoolingOptions().setMaxConnectionsPerHost(HostDistance.LOCAL, 64);
-        cluster.getConfiguration().getPoolingOptions().setMaxConnectionsPerHost(HostDistance.REMOTE, 16);
-
-        return cluster;
+        return buildCluster(sourceCassandraProperties);
     }
 
     @Bean
     public Cluster destinationCluster(SourceCassandraProperties destinationCassandraProperties) {
+        return buildCluster(destinationCassandraProperties);
+    }
+
+    private Cluster buildCluster(CassandraProperties cassandraProperties) {
         Cluster cluster = Cluster.builder()
                 .withQueryOptions(new QueryOptions().setFetchSize(copyProperties.getQueryPageSize()))
-                .addContactPoints(destinationCassandraProperties.getContactPoints().split(","))
-                .withCredentials(destinationCassandraProperties.getUsername(), destinationCassandraProperties.getPassword())
+                .addContactPoints(cassandraProperties.getContactPoints().split(","))
+                .withCredentials(cassandraProperties.getUsername(), cassandraProperties.getPassword())
                 .withRetryPolicy(DefaultRetryPolicy.INSTANCE)
                 .withLoadBalancingPolicy(new TokenAwarePolicy(DCAwareRoundRobinPolicy.builder().build()))
-                .withPort(destinationCassandraProperties.getPort())
+                .withPort(cassandraProperties.getPort())
                 .build();
 
         cluster.getConfiguration().getPoolingOptions().setMaxConnectionsPerHost(HostDistance.LOCAL, 64);

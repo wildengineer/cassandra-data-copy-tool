@@ -5,8 +5,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoConfiguration;
 
-@SpringBootApplication
-@EnableAutoConfiguration(exclude = {CassandraDataAutoConfiguration.class} )
+@SpringBootApplication(exclude = {
+		CassandraDataAutoConfiguration.class
+})
 public class CassandraDataCopyToolApplication {
 
 	public static void main(String[] args) {
