@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by wildengineer on 3/28/16.
+ * Created by mgroves on 3/28/16.
  */
 @Component
 @ConfigurationProperties(prefix = "copy")

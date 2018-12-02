@@ -1,7 +1,7 @@
 package wildengineer.cassandra.data.copy;
 
 /**
- * Created by wildengineer on 5/28/16.
+ * Created by mgroves on 5/28/16.
  */
 public class CassandraProperties {
 

@@ -1,26 +1,31 @@
 package wildengineer.cassandra.data.copy;
 
-import com.datastax.driver.core.Cluster;
-import com.datastax.driver.core.Session;
-import com.datastax.driver.core.querybuilder.Select;
-import com.google.common.collect.Sets;
+import static com.datastax.driver.core.querybuilder.QueryBuilder.eq;
+import static com.datastax.driver.core.querybuilder.QueryBuilder.select;
+import static org.junit.Assert.*;
+import static wildengineer.cassandra.data.copy.TestUtil.CASSANDRA;
+import static wildengineer.cassandra.data.copy.TestUtil.LASTNAME;
+import static wildengineer.cassandra.data.copy.TestUtil.LOCALHOST;
+import static wildengineer.cassandra.data.copy.TestUtil.TEST_KEYSPACE;
+import static wildengineer.cassandra.data.copy.TestUtil.USERS;
+import static wildengineer.cassandra.data.copy.TestUtil.VERIFIED_USERS;
+
+import java.util.List;
+
 import org.cassandraunit.spring.CassandraDataSet;
 import org.cassandraunit.spring.CassandraUnitTestExecutionListener;
 import org.cassandraunit.spring.EmbeddedCassandra;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.*;
+import org.junit.runner.*;
 import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.StopWatch;
 
-import java.util.List;
-
-import static com.datastax.driver.core.querybuilder.QueryBuilder.eq;
-import static com.datastax.driver.core.querybuilder.QueryBuilder.select;
-import static org.junit.Assert.*;
-import static wildengineer.cassandra.data.copy.TestUtil.*;
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+import com.datastax.driver.core.querybuilder.Select;
+import com.google.common.collect.Sets;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestExecutionListeners({ CassandraUnitTestExecutionListener.class })
@@ -97,11 +102,9 @@ public class TableDataCopierTest {
 	}
 
 	private static Session createNewLocalhostSession() {
-		//Turning off jmx reporting to avoid errors
 		Cluster cluster = Cluster.builder()
 				.addContactPoints(LOCALHOST)
 				.withCredentials(CASSANDRA, CASSANDRA)
-				.withoutJMXReporting()
 				.withPort(9142)
 				.build();
 		return cluster.connect(TEST_KEYSPACE);
