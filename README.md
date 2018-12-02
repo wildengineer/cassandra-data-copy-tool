@@ -16,6 +16,12 @@ Once you've got your environment setup run from the project directory.
 
 This builds a jar in ./target/cassandra-data-copy-tool-<VERSION>-SNAPSHOT.jar"
 
+### Run
+
+Once you have your property file ready, simply run:
+
+> java -jar cassandra-data-copy-tool-<VERSION>-SNAPSHOT.jar --spring.config.location=/path/to/config.properties
+
 ### Configuration
 
 To configure the tool you'll need to create a properties file. Here's an example:
@@ -77,9 +83,3 @@ destination.cassandra.port | Destination cluster's port | 9142
 destination.cassandra.keyspace | Destination keyspace name | ""
 destination.cassandra.username | Destination username | cassandra
 destination.cassandra.password | Destination plaintext password | cassandra
-
-### Run
-
-Once you have your property file ready, simply run:
-
-> java -jar cassandra-data-copy-tool-<VERSION>-SNAPSHOT.jar --spring.config.location=/path/to/config.properties
