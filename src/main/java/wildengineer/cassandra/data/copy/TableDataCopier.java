@@ -27,8 +27,6 @@ public class TableDataCopier {
 
     private final String INSERT_STATEMENT = "insert into %s (%s) values (%s)";
 
-    private int copyCount = 0;
-
     @Autowired
     public TableDataCopier(Session sourceSession, Session destinationSession, TuningParams tuningParams) {
         this.sourceSession = sourceSession;
@@ -43,7 +41,7 @@ public class TableDataCopier {
     @SuppressWarnings("UnstableApiUsage")
     public void copy(String fromTable, String toTable, Set<String> ignoreColumns) throws Exception {
 
-        LOGGER.debug("Copying data from table {} to table {}", fromTable, toTable);
+        LOGGER.info("Copying data from table {} to table {}", fromTable, toTable);
 
         Select selectFromCustomer = QueryBuilder.select().from(fromTable);
         ResultSet rs = sourceSession.execute(selectFromCustomer);
@@ -51,6 +49,8 @@ public class TableDataCopier {
         List<ColumnDefinitions.Definition> columnDefinitions = null;
         PreparedStatement insertStatement = null;
         RateLimiter rateLimiter = RateLimiter.create(tuningParams.getBatchSize() * tuningParams.getBatchesPerSecond());
+
+        int copyCount = 0;
 
         for (Row row : rs) {
 
@@ -75,13 +75,15 @@ public class TableDataCopier {
             if (rowsToIngest.size() >= tuningParams.getBatchSize()) {
                 List<List<?>> copyOfRowsToIngest = new ArrayList<>(rowsToIngest);
                 rowsToIngest.clear();
-                LOGGER.debug("Ingesting {} rows to destination", copyOfRowsToIngest.size());
+                LOGGER.info("Ingesting {} rows to destination", copyOfRowsToIngest.size());
                 ingest(insertStatement, rowIterator(copyOfRowsToIngest), rateLimiter);
+                copyCount += copyOfRowsToIngest.size();
             }
         }
         ingest(insertStatement, rowIterator(rowsToIngest), rateLimiter);
+        copyCount += rowsToIngest.size();
 
-        LOGGER.debug("Finished copying {} rows from table {} to table {}", copyCount, fromTable, toTable);
+        LOGGER.info("Finished copying {} rows from table {} to table {}", copyCount, fromTable, toTable);
     }
 
     private void ingest(PreparedStatement preparedStatement, Iterator<Object[]> rowIterator, RateLimiter rateLimiter) {
@@ -151,7 +153,7 @@ public class TableDataCopier {
                 value = row.getMap(name, String.class, Object.class);
                 break;
             case TIMESTAMP:
-                value = row.getDate(name);
+                value = row.getTimestamp(name);
                 break;
             case TIMEUUID:
             case UUID:
@@ -166,8 +168,11 @@ public class TableDataCopier {
             case VARINT:
                 value = row.getVarint(name);
                 break;
+            case TINYINT:
+                value = row.getByte(name);
+                break;
             default:
-                throw new IllegalStateException("Encountered unknown Cassandra DataType.");
+                throw new IllegalStateException("Encountered unknown Cassandra DataType (" + dataType + ")");
         }
         return value;
     }
