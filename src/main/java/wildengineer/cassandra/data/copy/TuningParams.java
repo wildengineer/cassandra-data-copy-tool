@@ -1,7 +1,7 @@
 package wildengineer.cassandra.data.copy;
 
 /**
- * Created by mgroves on 5/29/16.
+ * Created by wildengineer on 5/29/16.
  */
 public class TuningParams {
 
