@@ -1,13 +1,6 @@
 package wildengineer.cassandra.data.copy;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
+import com.datastax.driver.core.Session;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +9,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.datastax.driver.core.Session;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * CommandLineRunner implementation for copying a keyspace from one cassandra database to another.
  *
  * This tool assumes that the source and destination keyspaces are identical.
  *
- * Created by mgroves on 3/27/16.
+ * Created by wildengineer on 3/27/16.
  */
 @Component
 public class CopyRunner implements CommandLineRunner {
