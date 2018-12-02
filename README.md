@@ -1,5 +1,5 @@
 # Cassandra Data Copy Tool
-This simple java based tool copies data from a live cassandra table to another. The source and destination tables do not need to be on the same cluster or keyspace. All you need to ensure is that the destination table is compatible with the source table. 
+This simple tool to copy data between live cassandra tables. The source and destination tables do not need to be on the same cluster or keyspace. All you need to ensure is that the destination table is compatible with the source table. 
 
 ## How to use it
 
