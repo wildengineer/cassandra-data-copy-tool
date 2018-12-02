@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoCo
 @SpringBootApplication(exclude = {CassandraDataAutoConfiguration.class})
 public class CassandraDataCopyToolApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(CassandraDataCopyToolApplication.class, args);
+		SpringApplication.run(CassandraDataCopyToolApplication.class, args).close();
+		System.exit(0);
 	}
 }
