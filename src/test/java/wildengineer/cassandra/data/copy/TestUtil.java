@@ -1,16 +1,17 @@
 package wildengineer.cassandra.data.copy;
 
-import com.datastax.driver.core.querybuilder.Select;
-import org.springframework.data.cassandra.core.CassandraTemplate;
-
-import java.util.List;
-
 import static com.datastax.driver.core.querybuilder.QueryBuilder.eq;
 import static com.datastax.driver.core.querybuilder.QueryBuilder.select;
 import static org.junit.Assert.*;
 
+import java.util.List;
+
+import org.springframework.data.cassandra.core.CassandraTemplate;
+
+import com.datastax.driver.core.querybuilder.Select;
+
 /**
- * Created by wildengineer on 6/12/16.
+ * Created by mgroves on 6/12/16.
  */
 public class TestUtil {
 

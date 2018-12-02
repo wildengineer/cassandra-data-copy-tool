@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 /**
  * Cassandra connection properties bean for source connection
  *
- * @author wildengineer
+ * @author mgroves
  */
 @Component
 @ConfigurationProperties(prefix = "source.cassandra")
